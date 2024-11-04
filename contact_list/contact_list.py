@@ -1,5 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QLineEdit, QPushButton, QTableWidget, QLabel, QVBoxLayout, QWidget, QTableWidgetItem, QMessageBox
-from PySide6 import QtCore
+from PySide6.QtWidgets import  QMainWindow, QLineEdit, QPushButton, QTableWidget, QLabel, QVBoxLayout, QWidget, QTableWidgetItem
 
 class ContactList(QMainWindow):
     """
@@ -12,11 +11,8 @@ class ContactList(QMainWindow):
         users can add and remove contact data.
         """
         super().__init__()
-        self.__initialize_widgets()
-        
-        # Establish connections between buttons and their slots
-        self.add_button.clicked.connect(self.__on_add_contact)
-        self.remove_button.clicked.connect(self.__on_remove_contact)  # Connect remove_button to __on_remove_contact
+        self.__initialize_widgets()      
+
 
     def __initialize_widgets(self):
         """
@@ -53,46 +49,6 @@ class ContactList(QMainWindow):
         container.setLayout(layout)
         self.setCentralWidget(container)
 
-    @QtCore.Slot()  
-    def __on_add_contact(self):
-        contact_name = self.contact_name_input.text()
-        phone_number = self.phone_input.text()
-        
-        if contact_name and phone_number:  
-            row_count = self.contact_table.rowCount()
-            
-            self.contact_table.insertRow(row_count)
-            
-            name_item = QTableWidgetItem(contact_name)
-            phone_item = QTableWidgetItem(phone_number)
-            
-            self.contact_table.setItem(row_count, 0, name_item)  
-            self.contact_table.setItem(row_count, 1, phone_item) 
-            
-            self.status_label.setText("Contact added successfully.")
-        else:
-            self.status_label.setText("Please enter both name and phone number.")
 
-    @QtCore.Slot()  # Indicate that this method is a Slot
-    def __on_remove_contact(self):
-        # Get the current row selected
-        current_row = self.contact_table.currentRow()
-        
-        if current_row >= 0:  # Check if a row is selected
-            # Create a confirmation message box
-            reply = QMessageBox.question(
-                self,
-                "Remove Contact",
-                "Are you sure you want to remove the selected contact?",
-                QMessageBox.Yes | QMessageBox.No,
-                QMessageBox.No
-            )
-            
-            # Evaluate the user's response
-            if reply == QMessageBox.Yes:
-                self.contact_table.removeRow(current_row)  # Remove the selected row
-                self.status_label.setText("Contact removed.")
-            else:
-                self.status_label.setText("Contact removal canceled.")
-        else:
-            self.status_label.setText("Please select a row to be removed.")
+
+
