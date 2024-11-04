@@ -7,7 +7,7 @@ Date: {Date}
 """
 # REQUIREMENT - add import statements
 from to_do_list.to_do_list import ToDoList
-
+from to_do_list.task_editor import TaskEditor
 # GIVEN:
 from PySide6.QtWidgets import QApplication
 

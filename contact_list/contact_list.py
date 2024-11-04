@@ -14,9 +14,8 @@ class ContactList(QMainWindow):
         super().__init__()
         self.__initialize_widgets()
         
-        # Establish connections between buttons and their slots
         self.add_button.clicked.connect(self.__on_add_contact)
-        self.remove_button.clicked.connect(self.__on_remove_contact)  # Connect remove_button to __on_remove_contact
+        self.remove_button.clicked.connect(self.__on_remove_contact)  
 
     def __initialize_widgets(self):
         """
@@ -73,13 +72,11 @@ class ContactList(QMainWindow):
         else:
             self.status_label.setText("Please enter both name and phone number.")
 
-    @QtCore.Slot()  # Indicate that this method is a Slot
+    @QtCore.Slot() 
     def __on_remove_contact(self):
-        # Get the current row selected
         current_row = self.contact_table.currentRow()
         
-        if current_row >= 0:  # Check if a row is selected
-            # Create a confirmation message box
+        if current_row >= 0:  
             reply = QMessageBox.question(
                 self,
                 "Remove Contact",
@@ -88,9 +85,8 @@ class ContactList(QMainWindow):
                 QMessageBox.No
             )
             
-            # Evaluate the user's response
             if reply == QMessageBox.Yes:
-                self.contact_table.removeRow(current_row)  # Remove the selected row
+                self.contact_table.removeRow(current_row)
                 self.status_label.setText("Contact removed.")
             else:
                 self.status_label.setText("Contact removal canceled.")
