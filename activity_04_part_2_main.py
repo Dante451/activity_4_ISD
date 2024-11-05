@@ -2,12 +2,11 @@
 Description: A client program written to verify correctness of 
 the activity classes.
 Author: ACE Faculty
-Edited by: {Student Name}
-Date: {Date}
+Edited by: Dante Daciuk
+Date: 5/11/2024
 """
 # REQUIREMENT - add import statements
 from to_do_list.to_do_list import ToDoList
-from to_do_list.task_editor import TaskEditor
 # GIVEN:
 from PySide6.QtWidgets import QApplication
 
